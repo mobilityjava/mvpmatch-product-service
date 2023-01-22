@@ -1,0 +1,11 @@
+server:
+  port: 8101
+
+app:
+  doc.api.url: http://localhost:8080
+
+logging:
+  level:
+    com.app: debug
+
+

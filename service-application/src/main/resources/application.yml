@@ -1,0 +1,46 @@
+app:
+  mongo:
+    database: product-service
+  doc.api.url: http://localhost:8080
+  scheduler:
+    enabled: true
+  cache:
+    enabled: true
+
+server:
+  port: 8080
+  shutdown: graceful
+
+spring:
+  application:
+    name: product-service
+  jmx:
+    enabled: false
+  data:
+    mongodb:
+      uri: mongodb://admin:admin@localhost:27017/product-service?authSource=admin
+      auto-index-creation: true
+  jackson:
+    default-property-inclusion: non_null
+  cloud:
+    discovery:
+      enabled: false
+
+springdoc:
+  packagesToScan: com.app.productservice.application
+  pathsToMatch: /**
+  swagger-ui:
+    path: /swagger-ui/api-docs.html
+
+# actuator settings
+management:
+  health:
+    circuitbreakers.enabled: true
+  endpoint:
+    health:
+      show-details: when_authorized
+
+  endpoints:
+    web:
+      exposure:
+        include: health, caches, env, info, loggers, metrics, mappings
